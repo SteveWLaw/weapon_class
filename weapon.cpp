@@ -1,27 +1,105 @@
 #include "weapon.h"
+#include <cmath>
+#include <cfloat>
 
-void Weapon::Draw(Vector2 position, bool showBounds)
+void Weapon::Draw(Vector2 warriorPos, int facingParam, bool showBounds)
 {
-    // Use stored members (set via setters) when calling the full Draw implementation
-    Draw(position, scale, rotation, origin, showBounds);
-}
+    int f = (facingParam >= 0) ? 1 : -1;
 
-void Weapon::Draw(Vector2 position, float scale, float rotation, Vector2 origin, bool showBounds)
-{
-    Rectangle dest = { position.x, position.y, sourceRec.width * scale, sourceRec.height * scale };
+    float srcW = sourceRec.width;
+    float srcH = sourceRec.height;
+    float w = srcW * scale;
+    float h = srcH * scale;
 
-    DrawTexturePro(
-        *texture,
-        sourceRec,
-        dest,
-        Vector2{ origin.x * scale, origin.y * scale },
-        rotation,
-        WHITE
-    );
+    Vector2 offset = (f >= 0) ? offsetRight : offsetLeft;
+    Vector2 drawOrigin = (f >= 0) ? Vector2{origin.x * scale, origin.y * scale} : Vector2{(srcW - origin.x) * scale, origin.y * scale};
 
-    // Optionally draw bounding rectangle for debugging
+    // Pivot is the attachment point where weapon connects to warrior
+    Vector2 pivot = {warriorPos.x + offset.x, warriorPos.y + offset.y};
+
+    // Destination top-left: position so pivot aligns with drawOrigin
+    float destX = pivot.x - drawOrigin.x;
+    float destY = pivot.y - drawOrigin.y;
+
+    // For drawing only: offset texture down by its height
+    float drawDestY = destY + h;
+
+    // For left-facing, flip the source rectangle width to mirror the texture (keep same x to use same sprite)
+    Rectangle srcRect = (f >= 0) ? sourceRec : Rectangle{sourceRec.x, sourceRec.y, -sourceRec.width, sourceRec.height};
+
+    // When source width is negative, destination x needs adjustment
+    float drawDestX = (f >= 0) ? destX : destX + w;
+
+    Rectangle dest = {drawDestX, drawDestY, w, h};
+
+    DrawTexturePro(*texture, srcRect, dest, drawOrigin, rotation, WHITE);
+
+    // Compute and update collision rectangle (AABB of rotated sprite if rotation exists)
+    collisionRec = computeCollisionRec(warriorPos, facingParam);
+
     if (showBounds)
     {
-        DrawRectangleLinesEx(dest, 2.0f, RED);
+        // draw AABB collision rectangle (red)
+        DrawRectangleLinesEx(collisionRec, 2.0f, RED);
+
+        // draw pivot point (attachment) and draw origin marker
+        DrawCircleV(pivot, 4.0f, {0, 255, 255, 255});
+        DrawCircleV(Vector2{destX + drawOrigin.x, destY + drawOrigin.y}, 3.0f, BLUE);
     }
+}
+
+Rectangle Weapon::computeCollisionRec(Vector2 warriorPos, int facingParam) const
+{
+    int f = (facingParam >= 0) ? 1 : -1;
+    float srcW = sourceRec.width;
+    float srcH = sourceRec.height;
+    float w = srcW * scale;
+    float h = srcH * scale;
+
+    Vector2 offset = (f >= 0) ? offsetRight : offsetLeft;
+
+    // Pivot (attachment point) in world-space
+    Vector2 pivot = {warriorPos.x + offset.x, warriorPos.y + offset.y};
+
+    // Determine drawOrigin (mirrored for facing) in destination-space
+    Vector2 drawOrigin = (f >= 0) ? Vector2{origin.x * scale, origin.y * scale} : Vector2{(srcW - origin.x) * scale, origin.y * scale};
+
+    // Destination top-left so that pivot == dest + drawOrigin
+    float destX = pivot.x - drawOrigin.x;
+    float destY = pivot.y - drawOrigin.y;
+
+    // Corners of the unrotated dest rectangle (use positive width/height for AABB calc)
+    Vector2 corners[4] = {
+        {destX, destY},           // top-left
+        {destX + w, destY},       // top-right
+        {destX + w, destY + h},   // bottom-right
+        {destX, destY + h}        // bottom-left
+    };
+
+    // If rotation is effectively zero, return the simple rect
+    if (std::abs(rotation) < 1e-3f)
+    {
+        return Rectangle{destX, destY, w, h};
+    }
+
+    // Rotate corners around pivot and compute AABB
+    float rad = rotation * (3.14159265358979323846f / 180.0f);
+    float c = std::cos(rad);
+    float s = std::sin(rad);
+
+    float minX = FLT_MAX, minY = FLT_MAX, maxX = -FLT_MAX, maxY = -FLT_MAX;
+
+    for (int i = 0; i < 4; ++i)
+    {
+        float dx = corners[i].x - pivot.x;
+        float dy = corners[i].y - pivot.y;
+        float rx = pivot.x + dx * c - dy * s;
+        float ry = pivot.y + dx * s + dy * c;
+        if (rx < minX) minX = rx;
+        if (ry < minY) minY = ry;
+        if (rx > maxX) maxX = rx;
+        if (ry > maxY) maxY = ry;
+    }
+
+    return Rectangle{minX, minY, maxX - minX, maxY - minY};
 }
