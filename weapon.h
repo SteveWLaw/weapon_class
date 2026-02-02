@@ -55,11 +55,6 @@ public:
     const void setScale(float newScale) { scale = newScale; }
     const void setOrigin(Vector2 newOrigin) { origin = newOrigin; }
     const void setFacing(int f) { facing = (f >= 0 ? 1 : -1); }
-    const int getFacing() const { return facing; }
-    const Vector2 getOrigin() const { return origin; }
-    const float getWidth() const { return width * scale; }
-    const float getHeight() const { return height * scale; }
-    const float getscale() const { return scale; }
 
 private:
     Texture2D *texture{nullptr};

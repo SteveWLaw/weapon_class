@@ -18,15 +18,29 @@ int main()
     Rectangle warrior = {screenWidth / 2 - 20, screenHeight / 2 - 60, 40, 120};
 
     // Simple enemy used for the demo (rectangle that can be hit by a weapon)
-    struct Enemy {
+    struct Enemy
+    {
         Rectangle rect;
         bool hit{false};
         float hitTimer{0.f};
-        void update(float dt) { if (hitTimer > 0.f) { hitTimer -= dt; if (hitTimer <= 0.f) hit = false; } }
-        void draw() const { DrawRectangleRec(rect, hit ? RED : GRAY); if (hit) DrawText("HIT!", (int)rect.x, (int)(rect.y - 20), 20, BLACK); }
+        void update(float dt)
+        {
+            if (hitTimer > 0.f)
+            {
+                hitTimer -= dt;
+                if (hitTimer <= 0.f)
+                    hit = false;
+            }
+        }
+        void draw() const
+        {
+            DrawRectangleRec(rect, hit ? RED : GRAY);
+            if (hit)
+                DrawText("HIT!", (int)rect.x, (int)(rect.y - 20), 20, BLACK);
+        }
     };
 
-    Enemy demoEnemy{{screenWidth/2 + 150, screenHeight/2 - 40, 40, 80}, false, 0.f};
+    Enemy demoEnemy{{screenWidth / 2 + 150, screenHeight / 2 - 40, 40, 80}, false, 0.f};
 
     SetTargetFPS(60);
     // Main game loop
