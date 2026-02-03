@@ -102,13 +102,13 @@ int main()
                 {
                     isReady = true;
                 }
-                
+
                 if (attackReleased && isReady && !attacking)
                 {
                     attackTimer = attackDuration;
                     isReady = false;
                 }
-                
+
                 // Cancel ready if attack started
                 if (attacking)
                 {
@@ -139,7 +139,7 @@ int main()
             {
                 float t = attackTimer / attackDuration;
                 float normalized = 1.0f - t; // 0 at start, 1 at end
-                
+
                 // Make thrust go out and return: 0 -> 1 -> 0 (triangle wave)
                 if (normalized < 0.5f)
                     attackProgress = normalized * 2.0f; // 0 to 1 in first half
@@ -179,7 +179,7 @@ int main()
                 // - Attack: 45° rotation, thrust forward and back
                 float thrustRotation = 45.f * warriorFacing;
                 float maxThrust = 50.f; // pixels to thrust forward
-                
+
                 if (attacking)
                 {
                     weapon.setRotation(thrustRotation);
@@ -220,7 +220,7 @@ int main()
         demoEnemy.draw();
 
         // Draw instructions
-        const char* attackInstr = usingSword ? "SPACE/CLICK: Attack" : "HOLD SPACE/CLICK: Ready, RELEASE: Thrust";
+        const char *attackInstr = usingSword ? "SPACE/CLICK: Attack" : "HOLD SPACE/CLICK: Ready, RELEASE: Thrust";
         DrawText(TextFormat("TAB: Switch weapon | LEFT: Face left | %s", attackInstr), 10, 10, 18, DARKGRAY);
         DrawText(usingSword ? "Weapon: SWORD (Swing)" : "Weapon: SPEAR (Thrust)", 10, 35, 20, DARKGREEN);
         if (isReady)

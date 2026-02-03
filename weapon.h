@@ -3,8 +3,8 @@
 // Attack types for different weapon behaviors
 enum class AttackType
 {
-    Swing,  // Rotate about origin (swords, axes)
-    Thrust  // Rotate then move linearly forward (spears, polearms)
+    Swing, // Rotate about origin (swords, axes)
+    Thrust // Rotate then move linearly forward (spears, polearms)
 };
 
 class Weapon
@@ -22,8 +22,8 @@ public:
 
         // Use column * cellWidth and row * cellHeight
         sourceRect = {static_cast<int>(position.x) * frameCellWidth,
-                     static_cast<int>(position.y) * frameCellHeight,
-                     frameCellWidth, frameCellHeight};
+                      static_cast<int>(position.y) * frameCellHeight,
+                      frameCellWidth, frameCellHeight};
 
         origin = {0.f, frameCellHeight}; // bottom-left by default (x=0, y=height)
     }
@@ -51,7 +51,11 @@ public:
     void Draw(Vector2 warriorPos, int facing, bool showBounds = false);
 
     // Offsets (per-facing) determine how the weapon is positioned relative to the warrior
-    const void setOffsets(Vector2 rightOffset, Vector2 leftOffset) { attachmentOffsetRight = rightOffset; attachmentOffsetLeft = leftOffset; }
+    const void setOffsets(Vector2 rightOffset, Vector2 leftOffset)
+    {
+        attachmentOffsetRight = rightOffset;
+        attachmentOffsetLeft = leftOffset;
+    }
 
     // Compute collision rectangle for a warrior position and facing WITHOUT mutating internal state
     Rectangle computeCollisionRec(Vector2 warriorPos, int facing) const;
@@ -62,7 +66,7 @@ public:
     const void setScale(float newScale) { scale = newScale; }
     const void setOrigin(Vector2 newOrigin) { origin = newOrigin; }
     const void setFacing(int f) { facing = (f >= 0 ? 1 : -1); }
-    
+
     // Attack configuration
     const void setAttackType(AttackType type) { attackType = type; }
     const void setThrustOffset(float offset) { thrustOffset = offset; }
@@ -82,7 +86,7 @@ private:
     Vector2 attachmentOffsetLeft{25.f, 55.f};
     Rectangle collisionRect{0.f, 0.f, 0.f, 0.f};
     int facing{1}; // 1 = facing right (default), -1 = facing left (flipped)
-    
+
     // Attack behavior
     AttackType attackType{AttackType::Swing};
     float thrustOffset{0.f}; // How far forward the weapon has thrust (in pixels)

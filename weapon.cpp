@@ -77,10 +77,10 @@ Rectangle Weapon::computeCollisionRec(Vector2 warriorPos, int facing) const
 
     // Corners of the unrotated dest rectangle (use positive width/height for AABB calc)
     Vector2 corners[4] = {
-        {destX, destY},           // top-left
-        {destX + w, destY},       // top-right
-        {destX + w, destY + h},   // bottom-right
-        {destX, destY + h}        // bottom-left
+        {destX, destY},         // top-left
+        {destX + w, destY},     // top-right
+        {destX + w, destY + h}, // bottom-right
+        {destX, destY + h}      // bottom-left
     };
 
     // If rotation is effectively zero, return the simple rect
@@ -102,10 +102,14 @@ Rectangle Weapon::computeCollisionRec(Vector2 warriorPos, int facing) const
         float dy = corners[i].y - pivot.y;
         float rx = pivot.x + dx * c - dy * s;
         float ry = pivot.y + dx * s + dy * c;
-        if (rx < minX) minX = rx;
-        if (ry < minY) minY = ry;
-        if (rx > maxX) maxX = rx;
-        if (ry > maxY) maxY = ry;
+        if (rx < minX)
+            minX = rx;
+        if (ry < minY)
+            minY = ry;
+        if (rx > maxX)
+            maxX = rx;
+        if (ry > maxY)
+            maxY = ry;
     }
 
     return Rectangle{minX, minY, maxX - minX, maxY - minY};
