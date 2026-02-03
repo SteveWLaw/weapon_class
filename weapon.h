@@ -1,5 +1,12 @@
 #include "raylib.h"
 
+// Attack types for different weapon behaviors
+enum class AttackType
+{
+    Swing,  // Rotate about origin (swords, axes)
+    Thrust  // Rotate then move linearly forward (spears, polearms)
+};
+
 class Weapon
 {
 public:
@@ -55,6 +62,11 @@ public:
     const void setScale(float newScale) { scale = newScale; }
     const void setOrigin(Vector2 newOrigin) { origin = newOrigin; }
     const void setFacing(int f) { facing = (f >= 0 ? 1 : -1); }
+    
+    // Attack configuration
+    const void setAttackType(AttackType type) { attackType = type; }
+    const void setThrustOffset(float offset) { thrustOffset = offset; }
+    const AttackType getAttackType() const { return attackType; }
 
 private:
     Texture2D *texture{nullptr};
@@ -70,4 +82,8 @@ private:
     Vector2 attachmentOffsetLeft{25.f, 55.f};
     Rectangle collisionRect{0.f, 0.f, 0.f, 0.f};
     int facing{1}; // 1 = facing right (default), -1 = facing left (flipped)
+    
+    // Attack behavior
+    AttackType attackType{AttackType::Swing};
+    float thrustOffset{0.f}; // How far forward the weapon has thrust (in pixels)
 };

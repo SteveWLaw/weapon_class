@@ -14,8 +14,15 @@ void Weapon::Draw(Vector2 warriorPos, int facing, bool showBounds)
     Vector2 offset = (facingDirection >= 0) ? attachmentOffsetRight : attachmentOffsetLeft;
     Vector2 drawOrigin = (facingDirection >= 0) ? Vector2{origin.x * scale, origin.y * scale} : Vector2{(srcW - origin.x) * scale, origin.y * scale};
 
+    // Apply thrust offset if using thrust attack
+    Vector2 thrustMovement{0.f, 0.f};
+    if (attackType == AttackType::Thrust)
+    {
+        thrustMovement = {thrustOffset * facingDirection, 0.f};
+    }
+
     // Pivot is the attachment point where weapon connects to warrior
-    Vector2 pivot = {warriorPos.x + offset.x, warriorPos.y + offset.y};
+    Vector2 pivot = {warriorPos.x + offset.x + thrustMovement.x, warriorPos.y + offset.y + thrustMovement.y};
 
     // Destination top-left: position so pivot aligns with drawOrigin
     float destX = pivot.x - drawOrigin.x;
