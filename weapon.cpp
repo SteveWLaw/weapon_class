@@ -2,17 +2,17 @@
 #include <cmath>
 #include <cfloat>
 
-void Weapon::Draw(Vector2 warriorPos, int facingParam, bool showBounds)
+void Weapon::Draw(Vector2 warriorPos, int facing, bool showBounds)
 {
-    int f = (facingParam >= 0) ? 1 : -1;
+    int facingDirection = (facing >= 0) ? 1 : -1;
 
-    float srcW = sourceRec.width;
-    float srcH = sourceRec.height;
+    float srcW = sourceRect.width;
+    float srcH = sourceRect.height;
     float w = srcW * scale;
     float h = srcH * scale;
 
-    Vector2 offset = (f >= 0) ? offsetRight : offsetLeft;
-    Vector2 drawOrigin = (f >= 0) ? Vector2{origin.x * scale, origin.y * scale} : Vector2{(srcW - origin.x) * scale, origin.y * scale};
+    Vector2 offset = (facingDirection >= 0) ? attachmentOffsetRight : attachmentOffsetLeft;
+    Vector2 drawOrigin = (facingDirection >= 0) ? Vector2{origin.x * scale, origin.y * scale} : Vector2{(srcW - origin.x) * scale, origin.y * scale};
 
     // Pivot is the attachment point where weapon connects to warrior
     Vector2 pivot = {warriorPos.x + offset.x, warriorPos.y + offset.y};
@@ -25,22 +25,22 @@ void Weapon::Draw(Vector2 warriorPos, int facingParam, bool showBounds)
     float drawDestY = destY + h;
 
     // For left-facing, flip the source rectangle width to mirror the texture (keep same x to use same sprite)
-    Rectangle srcRect = (f >= 0) ? sourceRec : Rectangle{sourceRec.x, sourceRec.y, -sourceRec.width, sourceRec.height};
+    Rectangle srcRect = (facingDirection >= 0) ? sourceRect : Rectangle{sourceRect.x, sourceRect.y, -sourceRect.width, sourceRect.height};
 
     // When source width is negative, destination x needs adjustment
-    float drawDestX = (f >= 0) ? destX : destX + w;
+    float drawDestX = (facingDirection >= 0) ? destX : destX + w;
 
     Rectangle dest = {drawDestX, drawDestY, w, h};
 
     DrawTexturePro(*texture, srcRect, dest, drawOrigin, rotation, WHITE);
 
     // Compute and update collision rectangle (AABB of rotated sprite if rotation exists)
-    collisionRec = computeCollisionRec(warriorPos, facingParam);
+    collisionRect = computeCollisionRec(warriorPos, facing);
 
     if (showBounds)
     {
         // draw AABB collision rectangle (red)
-        DrawRectangleLinesEx(collisionRec, 2.0f, RED);
+        DrawRectangleLinesEx(collisionRect, 2.0f, RED);
 
         // draw pivot point (attachment) and draw origin marker
         DrawCircleV(pivot, 4.0f, {0, 255, 255, 255});
@@ -48,21 +48,21 @@ void Weapon::Draw(Vector2 warriorPos, int facingParam, bool showBounds)
     }
 }
 
-Rectangle Weapon::computeCollisionRec(Vector2 warriorPos, int facingParam) const
+Rectangle Weapon::computeCollisionRec(Vector2 warriorPos, int facing) const
 {
-    int f = (facingParam >= 0) ? 1 : -1;
-    float srcW = sourceRec.width;
-    float srcH = sourceRec.height;
+    int facingDirection = (facing >= 0) ? 1 : -1;
+    float srcW = sourceRect.width;
+    float srcH = sourceRect.height;
     float w = srcW * scale;
     float h = srcH * scale;
 
-    Vector2 offset = (f >= 0) ? offsetRight : offsetLeft;
+    Vector2 offset = (facingDirection >= 0) ? attachmentOffsetRight : attachmentOffsetLeft;
 
     // Pivot (attachment point) in world-space
     Vector2 pivot = {warriorPos.x + offset.x, warriorPos.y + offset.y};
 
     // Determine drawOrigin (mirrored for facing) in destination-space
-    Vector2 drawOrigin = (f >= 0) ? Vector2{origin.x * scale, origin.y * scale} : Vector2{(srcW - origin.x) * scale, origin.y * scale};
+    Vector2 drawOrigin = (facingDirection >= 0) ? Vector2{origin.x * scale, origin.y * scale} : Vector2{(srcW - origin.x) * scale, origin.y * scale};
 
     // Destination top-left so that pivot == dest + drawOrigin
     float destX = pivot.x - drawOrigin.x;

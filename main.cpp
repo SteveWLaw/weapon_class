@@ -86,7 +86,7 @@ int main()
             weapon.Draw(weaponPos, warriorFacing, true);
 
             // Draw collision rectangle for debugging
-            Rectangle crec = weapon.getCollisionRec();
+            Rectangle crec = weapon.getCollisionRect();
             DrawRectangleLinesEx(crec, 2.0f, BLUE);
 
             // If attacking, test collision of the weapon vs the demo enemy
