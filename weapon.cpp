@@ -6,13 +6,13 @@ void Weapon::Draw(Vector2 warriorPos, int facing, bool showBounds)
 {
     int facingDirection = (facing >= 0) ? 1 : -1;
 
-    float srcW = sourceRect.width;
-    float srcH = sourceRect.height;
-    float w = srcW * scale;
-    float h = srcH * scale;
+    float sourceCellWidth = sourceRect.width;
+    float sourceCellHeight = sourceRect.height;
+    float scaledWidth = sourceCellWidth * scale;
+    float scaledHeight = sourceCellHeight * scale;
 
     Vector2 offset = (facingDirection >= 0) ? attachmentOffsetRight : attachmentOffsetLeft;
-    Vector2 drawOrigin = (facingDirection >= 0) ? Vector2{origin.x * scale, origin.y * scale} : Vector2{(srcW - origin.x) * scale, origin.y * scale};
+    Vector2 drawOrigin = (facingDirection >= 0) ? Vector2{origin.x * scale, origin.y * scale} : Vector2{(sourceCellWidth - origin.x) * scale, origin.y * scale};
 
     // Apply thrust offset if using thrust attack
     Vector2 thrustMovement{0.f, 0.f};
@@ -29,15 +29,15 @@ void Weapon::Draw(Vector2 warriorPos, int facing, bool showBounds)
     float destY = pivot.y - drawOrigin.y;
 
     // For drawing only: offset texture down by its height
-    float drawDestY = destY + h;
+    float drawDestY = destY + scaledHeight;
 
     // For left-facing, flip the source rectangle width to mirror the texture (keep same x to use same sprite)
     Rectangle srcRect = (facingDirection >= 0) ? sourceRect : Rectangle{sourceRect.x, sourceRect.y, -sourceRect.width, sourceRect.height};
 
     // When source width is negative, destination x needs adjustment
-    float drawDestX = (facingDirection >= 0) ? destX : destX + w;
+    float drawDestX = (facingDirection >= 0) ? destX : destX + scaledWidth;
 
-    Rectangle dest = {drawDestX, drawDestY, w, h};
+    Rectangle dest = {drawDestX, drawDestY, scaledWidth, scaledHeight};
 
     DrawTexturePro(*texture, srcRect, dest, drawOrigin, rotation, WHITE);
 
@@ -58,10 +58,10 @@ void Weapon::Draw(Vector2 warriorPos, int facing, bool showBounds)
 Rectangle Weapon::computeCollisionRec(Vector2 warriorPos, int facing) const
 {
     int facingDirection = (facing >= 0) ? 1 : -1;
-    float srcW = sourceRect.width;
-    float srcH = sourceRect.height;
-    float w = srcW * scale;
-    float h = srcH * scale;
+    float sourceCellWidth = sourceRect.width;
+    float sourceCellHeight = sourceRect.height;
+    float scaledWidth = sourceCellWidth * scale;
+    float scaledHeight = sourceCellHeight * scale;
 
     Vector2 offset = (facingDirection >= 0) ? attachmentOffsetRight : attachmentOffsetLeft;
 
@@ -69,7 +69,7 @@ Rectangle Weapon::computeCollisionRec(Vector2 warriorPos, int facing) const
     Vector2 pivot = {warriorPos.x + offset.x, warriorPos.y + offset.y};
 
     // Determine drawOrigin (mirrored for facing) in destination-space
-    Vector2 drawOrigin = (facingDirection >= 0) ? Vector2{origin.x * scale, origin.y * scale} : Vector2{(srcW - origin.x) * scale, origin.y * scale};
+    Vector2 drawOrigin = (facingDirection >= 0) ? Vector2{origin.x * scale, origin.y * scale} : Vector2{(sourceCellWidth - origin.x) * scale, origin.y * scale};
 
     // Destination top-left so that pivot == dest + drawOrigin
     float destX = pivot.x - drawOrigin.x;
@@ -77,16 +77,16 @@ Rectangle Weapon::computeCollisionRec(Vector2 warriorPos, int facing) const
 
     // Corners of the unrotated dest rectangle (use positive width/height for AABB calc)
     Vector2 corners[4] = {
-        {destX, destY},         // top-left
-        {destX + w, destY},     // top-right
-        {destX + w, destY + h}, // bottom-right
-        {destX, destY + h}      // bottom-left
+        {destX, destY},                            // top-left
+        {destX + scaledWidth, destY},              // top-right
+        {destX + scaledWidth, destY + scaledHeight}, // bottom-right
+        {destX, destY + scaledHeight}              // bottom-left
     };
 
     // If rotation is effectively zero, return the simple rect
     if (std::abs(rotation) < 1e-3f)
     {
-        return Rectangle{destX, destY, w, h};
+        return Rectangle{destX, destY, scaledWidth, scaledHeight};
     }
 
     // Rotate corners around pivot and compute AABB
