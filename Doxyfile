@@ -1,0 +1,54 @@
+# Doxyfile for Weapon Class Documentation
+
+# Project information
+PROJECT_NAME           = "Weapon Class"
+PROJECT_BRIEF          = "2D Weapon Rendering and Collision System"
+PROJECT_NUMBER         = "1.0"
+OUTPUT_DIRECTORY       = docs
+
+# Input files
+INPUT                  = weapon.h weapon.cpp
+RECURSIVE              = NO
+FILE_PATTERNS          = *.h *.cpp
+
+# Output formats
+GENERATE_HTML          = YES
+GENERATE_LATEX         = YES
+GENERATE_RTF           = NO
+GENERATE_XML           = NO
+
+# HTML output settings
+HTML_OUTPUT            = html
+HTML_FILE_EXTENSION    = .html
+HTML_COLORSTYLE_HUE    = 220
+HTML_COLORSTYLE_SAT    = 100
+HTML_COLORSTYLE_GAMMA  = 80
+
+# LaTeX/PDF output settings
+LATEX_OUTPUT           = latex
+PDF_HYPERLINKS         = YES
+USE_PDFLATEX           = YES
+LATEX_BATCHMODE        = YES
+
+# Extraction settings
+EXTRACT_ALL            = YES
+EXTRACT_PRIVATE        = YES
+EXTRACT_STATIC         = YES
+EXTRACT_LOCAL_CLASSES  = YES
+
+# Documentation settings
+JAVADOC_AUTOBRIEF      = YES
+OPTIMIZE_OUTPUT_FOR_C  = NO
+INLINE_SIMPLE_STRUCTS  = YES
+
+# Diagram settings
+HAVE_DOT               = NO
+CLASS_DIAGRAMS         = YES
+COLLABORATION_GRAPH    = NO
+INCLUDE_GRAPH          = NO
+
+# Warnings
+QUIET                  = NO
+WARNINGS               = YES
+WARN_IF_UNDOCUMENTED   = YES
+WARN_IF_DOC_ERROR      = YES

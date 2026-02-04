@@ -37,7 +37,7 @@ int main()
     float attackTimer1 = 0.f;
     float attackTimer2 = 0.f;
     float attackTimer3 = 0.f;
-    const float attackDuration = 0.3f;
+    const float attackDuration = 0.15f;
 
     SetTargetFPS(60);
     // Main game loop

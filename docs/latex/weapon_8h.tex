@@ -1,0 +1,54 @@
+\doxysection{weapon.\+h File Reference}
+\hypertarget{weapon_8h}{}\label{weapon_8h}\index{weapon.h@{weapon.h}}
+
+
+\doxylink{class_weapon}{Weapon} rendering and collision system for 2D sprite-\/based games.  
+
+
+{\ttfamily \+\#include "{}raylib.\+h"{}}\newline
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \doxymbox{\hyperlink{class_weapon}{Weapon}}
+\begin{DoxyCompactList}\small\item\em Represents a weapon sprite with rendering, rotation, and collision detection. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum class \doxymbox{\hyperlink{weapon_8h_a904b2f9c8f3951116c343784c59d6afe}{Attack\+Type}} \{ \doxymbox{\hyperlink{weapon_8h_a904b2f9c8f3951116c343784c59d6afea198b44a40aa77f2256886010c7526c0b}{Swing}}
+, \doxymbox{\hyperlink{weapon_8h_a904b2f9c8f3951116c343784c59d6afea85c47f9b7df324d1db2794e0e2b8a810}{Thrust}}
+ \}
+\begin{DoxyCompactList}\small\item\em Defines different weapon attack behavior patterns. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+\doxylink{class_weapon}{Weapon} rendering and collision system for 2D sprite-\/based games. 
+
+
+
+\label{doc-enum-members}
+\Hypertarget{weapon_8h_doc-enum-members}
+\doxysubsection{Enumeration Type Documentation}
+\Hypertarget{weapon_8h_a904b2f9c8f3951116c343784c59d6afe}\index{weapon.h@{weapon.h}!AttackType@{AttackType}}
+\index{AttackType@{AttackType}!weapon.h@{weapon.h}}
+\doxysubsubsection{\texorpdfstring{AttackType}{AttackType}}
+{\footnotesize\ttfamily \label{weapon_8h_a904b2f9c8f3951116c343784c59d6afe} 
+enum class \doxymbox{\hyperlink{weapon_8h_a904b2f9c8f3951116c343784c59d6afe}{Attack\+Type}}\hspace{0.3cm}{\ttfamily [strong]}}
+
+
+
+Defines different weapon attack behavior patterns. 
+
+\begin{DoxyEnumFields}[2]{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Swing@{Swing}!weapon.h@{weapon.h}}
+\index{weapon.h@{weapon.h}!Swing@{Swing}}
+}\Hypertarget{weapon_8h_a904b2f9c8f3951116c343784c59d6afea198b44a40aa77f2256886010c7526c0b}\label{weapon_8h_a904b2f9c8f3951116c343784c59d6afea198b44a40aa77f2256886010c7526c0b} 
+Swing&Rotate about origin point (swords, axes). \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{Thrust@{Thrust}!weapon.h@{weapon.h}}
+\index{weapon.h@{weapon.h}!Thrust@{Thrust}}
+}\Hypertarget{weapon_8h_a904b2f9c8f3951116c343784c59d6afea85c47f9b7df324d1db2794e0e2b8a810}\label{weapon_8h_a904b2f9c8f3951116c343784c59d6afea85c47f9b7df324d1db2794e0e2b8a810} 
+Thrust&Rotate then move linearly forward (spears, polearms). \\
+\hline
+
+\end{DoxyEnumFields}

@@ -1,0 +1,101 @@
+\doxysection{weapon.\+h}
+\hypertarget{weapon_8h_source}{}\label{weapon_8h_source}\doxymbox{\hyperlink{weapon_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}raylib.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{enum\ class}\ \doxymbox{\hyperlink{weapon_8h_a904b2f9c8f3951116c343784c59d6afe}{AttackType}}}
+\DoxyCodeLine{00013\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ \doxymbox{\hyperlink{weapon_8h_a904b2f9c8f3951116c343784c59d6afea198b44a40aa77f2256886010c7526c0b}{Swing}},\ \ }
+\DoxyCodeLine{00015\ \ \ \ \ \doxymbox{\hyperlink{weapon_8h_a904b2f9c8f3951116c343784c59d6afea85c47f9b7df324d1db2794e0e2b8a810}{Thrust}}\ \ }
+\DoxyCodeLine{00016\ \};}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{class\ }\doxymbox{\hyperlink{class_weapon_a10e72a6601574ec80598d4bb24c28f6a}{Weapon}}}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00036\ \ \ \ \ \doxymbox{\hyperlink{class_weapon_a10e72a6601574ec80598d4bb24c28f6a}{Weapon}}(Texture2D\ *sharedTexture,\ Vector2\ position,\ Vector2\ sheetSize\ =\ \{10,\ 3\},\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_weapon_a425a9f9fc4bb9bf0e4de80855d3e2ac0}{scale}}\ =\ 1.0f)}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ :\ \doxymbox{\hyperlink{class_weapon_a2e07304911cb0044a0056dfc8c623dd8}{spriteSheetGridSize}}(sheetSize),\ \doxymbox{\hyperlink{class_weapon_a425a9f9fc4bb9bf0e4de80855d3e2ac0}{scale}}(\doxymbox{\hyperlink{class_weapon_a425a9f9fc4bb9bf0e4de80855d3e2ac0}{scale}})}
+\DoxyCodeLine{00038\ \ \ \ \ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_weapon_a345c620ae000eac508ddd8bcb182d4c0}{texture}}\ =\ sharedTexture;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Calculate\ single-\/cell\ width/height}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_weapon_a7fd2caa4e56831590ca00cdd140cc39d}{frameCellWidth}}\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(\doxymbox{\hyperlink{class_weapon_a345c620ae000eac508ddd8bcb182d4c0}{texture}}-\/>width)\ /\ \doxymbox{\hyperlink{class_weapon_a2e07304911cb0044a0056dfc8c623dd8}{spriteSheetGridSize}}.x;}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_weapon_a2bc062abbea315fa908942a021d93c81}{frameCellHeight}}\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(\doxymbox{\hyperlink{class_weapon_a345c620ae000eac508ddd8bcb182d4c0}{texture}}-\/>height)\ /\ \doxymbox{\hyperlink{class_weapon_a2e07304911cb0044a0056dfc8c623dd8}{spriteSheetGridSize}}.y;}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Use\ column\ *\ cellWidth\ and\ row\ *\ cellHeight}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_weapon_a0f9ebc15968399a6a99f4a9be36cb145}{sourceRect}}\ =\ \{\textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(position.x)\ *\ \doxymbox{\hyperlink{class_weapon_a7fd2caa4e56831590ca00cdd140cc39d}{frameCellWidth}},}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(position.y)\ *\ \doxymbox{\hyperlink{class_weapon_a2bc062abbea315fa908942a021d93c81}{frameCellHeight}},}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_weapon_a7fd2caa4e56831590ca00cdd140cc39d}{frameCellWidth}},\ \doxymbox{\hyperlink{class_weapon_a2bc062abbea315fa908942a021d93c81}{frameCellHeight}}\};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_weapon_acd9d5fa6d839c2d8f0bf605767590410}{origin}}\ =\ \{0.f,\ \doxymbox{\hyperlink{class_weapon_a2bc062abbea315fa908942a021d93c81}{frameCellHeight}}\};\ \textcolor{comment}{//\ bottom-\/left\ by\ default\ (x=0,\ y=height)}}
+\DoxyCodeLine{00051\ \ \ \ \ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00060\ \ \ \ \ \doxymbox{\hyperlink{class_weapon_a7d25b8c37b3853290d84020b4030deb4}{Weapon}}(Texture2D\ *sharedTexture,\ \textcolor{keywordtype}{int}\ frameIndex,\ Vector2\ sheetSize\ =\ \{10,\ 3\},\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_weapon_a425a9f9fc4bb9bf0e4de80855d3e2ac0}{scale}}\ =\ 1.0f)}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ :\ \doxymbox{\hyperlink{class_weapon_a2e07304911cb0044a0056dfc8c623dd8}{spriteSheetGridSize}}(sheetSize),\ \doxymbox{\hyperlink{class_weapon_a425a9f9fc4bb9bf0e4de80855d3e2ac0}{scale}}(\doxymbox{\hyperlink{class_weapon_a425a9f9fc4bb9bf0e4de80855d3e2ac0}{scale}})}
+\DoxyCodeLine{00062\ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_weapon_a345c620ae000eac508ddd8bcb182d4c0}{texture}}\ =\ sharedTexture;}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_weapon_a7fd2caa4e56831590ca00cdd140cc39d}{frameCellWidth}}\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(\doxymbox{\hyperlink{class_weapon_a345c620ae000eac508ddd8bcb182d4c0}{texture}}-\/>width)\ /\ \doxymbox{\hyperlink{class_weapon_a2e07304911cb0044a0056dfc8c623dd8}{spriteSheetGridSize}}.x;}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_weapon_a2bc062abbea315fa908942a021d93c81}{frameCellHeight}}\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}\textcolor{keyword}{>}(\doxymbox{\hyperlink{class_weapon_a345c620ae000eac508ddd8bcb182d4c0}{texture}}-\/>height)\ /\ \doxymbox{\hyperlink{class_weapon_a2e07304911cb0044a0056dfc8c623dd8}{spriteSheetGridSize}}.y;}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ cols\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{int}\textcolor{keyword}{>}(\doxymbox{\hyperlink{class_weapon_a2e07304911cb0044a0056dfc8c623dd8}{spriteSheetGridSize}}.x);}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ col\ =\ frameIndex\ \%\ cols;}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ row\ =\ frameIndex\ /\ cols;}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_weapon_a0f9ebc15968399a6a99f4a9be36cb145}{sourceRect}}\ =\ \{col\ *\ \doxymbox{\hyperlink{class_weapon_a7fd2caa4e56831590ca00cdd140cc39d}{frameCellWidth}},\ row\ *\ \doxymbox{\hyperlink{class_weapon_a2bc062abbea315fa908942a021d93c81}{frameCellHeight}},\ \doxymbox{\hyperlink{class_weapon_a7fd2caa4e56831590ca00cdd140cc39d}{frameCellWidth}},\ \doxymbox{\hyperlink{class_weapon_a2bc062abbea315fa908942a021d93c81}{frameCellHeight}}\};}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_weapon_acd9d5fa6d839c2d8f0bf605767590410}{origin}}\ =\ \{0.f,\ \doxymbox{\hyperlink{class_weapon_a2bc062abbea315fa908942a021d93c81}{frameCellHeight}}\};}
+\DoxyCodeLine{00074\ \ \ \ \ \}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \ \ \ \ \doxymbox{\hyperlink{class_weapon_a336aad13bf2efa6fb03f4ae60c78ade4}{\string~Weapon}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_weapon_a824a0959b6ca28242187ee84d3102e13}{Draw}}(Vector2\ warriorPos,\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_weapon_a0ccbeeeb781abf021ebb24463e06d5e5}{facing}},\ \textcolor{keywordtype}{bool}\ showBounds\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_weapon_a6850081e5e3151d580d096203f145292}{setOffsets}}(Vector2\ rightOffset,\ Vector2\ leftOffset)}
+\DoxyCodeLine{00092\ \ \ \ \ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_weapon_ad265cbe7eb4679d7c6793c4288d022af}{attachmentOffsetRight}}\ =\ rightOffset;}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \doxymbox{\hyperlink{class_weapon_afab856f29f09584736d0dbad29cb322b}{attachmentOffsetLeft}}\ =\ leftOffset;}
+\DoxyCodeLine{00095\ \ \ \ \ \}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00103\ \ \ \ \ Rectangle\ \doxymbox{\hyperlink{class_weapon_aa36f9e74a317600fa067ded0e1c1c1a0}{computeCollisionRec}}(Vector2\ warriorPos,\ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_weapon_a0ccbeeeb781abf021ebb24463e06d5e5}{facing}})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keyword}{const}\ Rectangle\ \&\doxymbox{\hyperlink{class_weapon_aa7c03daded9914eea3e719f0e1ca6d9e}{getCollisionRect}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_weapon_a323142ddd8d54e2ad4aaea11fcf41c18}{collisionRect}};\ \}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_weapon_a189a275cde7992c0ffd75cc3f1b966a7}{setRotation}}(\textcolor{keywordtype}{float}\ newRotation)\ \{\ \doxymbox{\hyperlink{class_weapon_aea591386a659ecf7dd7e41ada97db990}{rotation}}\ =\ newRotation;\ \}}
+\DoxyCodeLine{00116\ \ \ \ \ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_weapon_ada9b5d30021042bc6a7816268d604888}{setScale}}(\textcolor{keywordtype}{float}\ newScale)\ \{\ \doxymbox{\hyperlink{class_weapon_a425a9f9fc4bb9bf0e4de80855d3e2ac0}{scale}}\ =\ newScale;\ \}}
+\DoxyCodeLine{00122\ \ \ \ \ }
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_weapon_aba8fc1b434b9e269f70abac64afedae0}{setOrigin}}(Vector2\ newOrigin)\ \{\ \doxymbox{\hyperlink{class_weapon_acd9d5fa6d839c2d8f0bf605767590410}{origin}}\ =\ newOrigin;\ \}}
+\DoxyCodeLine{00128\ \ \ \ \ }
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_weapon_ac43bf34d0fe18d09e4f08b11433ee9b1}{setFacing}}(\textcolor{keywordtype}{int}\ f)\ \{\ \doxymbox{\hyperlink{class_weapon_a0ccbeeeb781abf021ebb24463e06d5e5}{facing}}\ =\ (f\ >=\ 0\ ?\ 1\ :\ -\/1);\ \}}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_weapon_a517c84a4dc73e458ccec24180aa43481}{setAttackType}}(\doxymbox{\hyperlink{weapon_8h_a904b2f9c8f3951116c343784c59d6afe}{AttackType}}\ type)\ \{\ \doxymbox{\hyperlink{class_weapon_aad1a84d3fb49f4362add023cad45afda}{attackType}}\ =\ type;\ \}}
+\DoxyCodeLine{00140\ \ \ \ \ }
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_weapon_ad563af2de23f25ccf75e033ceec4402f}{setThrustOffset}}(\textcolor{keywordtype}{float}\ offset)\ \{\ \doxymbox{\hyperlink{class_weapon_a2e520030d87416fb653bb98acaf477ad}{thrustOffset}}\ =\ offset;\ \}}
+\DoxyCodeLine{00146\ \ \ \ \ }
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keyword}{const}\ \doxymbox{\hyperlink{weapon_8h_a904b2f9c8f3951116c343784c59d6afe}{AttackType}}\ \doxymbox{\hyperlink{class_weapon_a8dae7622412710a1184917aa85f1a431}{getAttackType}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_weapon_aad1a84d3fb49f4362add023cad45afda}{attackType}};\ \}}
+\DoxyCodeLine{00152\ \ \ \ \ }
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ \doxymbox{\hyperlink{class_weapon_abe554f22f5f978f1e7da8d86474da8d9}{setDamage}}(\textcolor{keywordtype}{float}\ dmg)\ \{\ \doxymbox{\hyperlink{class_weapon_a5fd71198c35ebc63e9d5c4fc486d2510}{damage}}\ =\ dmg;\ \}}
+\DoxyCodeLine{00158\ \ \ \ \ }
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_weapon_a1e866862f66b57e2786b20198660f0c0}{getDamage}}()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \doxymbox{\hyperlink{class_weapon_a5fd71198c35ebc63e9d5c4fc486d2510}{damage}};\ \}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00166\ \ \ \ \ Texture2D\ *\doxymbox{\hyperlink{class_weapon_a345c620ae000eac508ddd8bcb182d4c0}{texture}}\{\textcolor{keyword}{nullptr}\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00167\ \ \ \ \ Rectangle\ \doxymbox{\hyperlink{class_weapon_a0f9ebc15968399a6a99f4a9be36cb145}{sourceRect}}\{0,\ 0,\ 0,\ 0\};\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00168\ \ \ \ \ Vector2\ \doxymbox{\hyperlink{class_weapon_a2e07304911cb0044a0056dfc8c623dd8}{spriteSheetGridSize}}\{\};\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_weapon_aea591386a659ecf7dd7e41ada97db990}{rotation}}\{0.0f\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_weapon_a7fd2caa4e56831590ca00cdd140cc39d}{frameCellWidth}}\{0.0f\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_weapon_a2bc062abbea315fa908942a021d93c81}{frameCellHeight}}\{0.0f\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_weapon_a425a9f9fc4bb9bf0e4de80855d3e2ac0}{scale}}\{1.0f\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00173\ \ \ \ \ Vector2\ \doxymbox{\hyperlink{class_weapon_acd9d5fa6d839c2d8f0bf605767590410}{origin}}\{0.f,\ 0.f\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00174\ \ \ \ \ Vector2\ \doxymbox{\hyperlink{class_weapon_ad265cbe7eb4679d7c6793c4288d022af}{attachmentOffsetRight}}\{35.f,\ 55.f\};}
+\DoxyCodeLine{00175\ \ \ \ \ Vector2\ \doxymbox{\hyperlink{class_weapon_afab856f29f09584736d0dbad29cb322b}{attachmentOffsetLeft}}\{25.f,\ 55.f\};\ }
+\DoxyCodeLine{00176\ \ \ \ \ Rectangle\ \doxymbox{\hyperlink{class_weapon_a323142ddd8d54e2ad4aaea11fcf41c18}{collisionRect}}\{0.f,\ 0.f,\ 0.f,\ 0.f\};\ }
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{keywordtype}{int}\ \doxymbox{\hyperlink{class_weapon_a0ccbeeeb781abf021ebb24463e06d5e5}{facing}}\{1\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00178\ \ \ \ \ }
+\DoxyCodeLine{00179\ \ \ \ \ \doxymbox{\hyperlink{weapon_8h_a904b2f9c8f3951116c343784c59d6afe}{AttackType}}\ \doxymbox{\hyperlink{class_weapon_aad1a84d3fb49f4362add023cad45afda}{attackType}}\{\doxymbox{\hyperlink{weapon_8h_a904b2f9c8f3951116c343784c59d6afea198b44a40aa77f2256886010c7526c0b}{AttackType::Swing}}\};\ }
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_weapon_a2e520030d87416fb653bb98acaf477ad}{thrustOffset}}\{0.f\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{keywordtype}{float}\ \doxymbox{\hyperlink{class_weapon_a5fd71198c35ebc63e9d5c4fc486d2510}{damage}}\{10.f\};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00182\ \};}
+
+\end{DoxyCode}

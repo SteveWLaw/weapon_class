@@ -1,0 +1,503 @@
+\doxysection{Weapon Class Reference}
+\hypertarget{class_weapon}{}\label{class_weapon}\index{Weapon@{Weapon}}
+
+
+Represents a weapon sprite with rendering, rotation, and collision detection.  
+
+
+
+
+{\ttfamily \+\#include $<$weapon.\+h$>$}
+
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{class_weapon_a10e72a6601574ec80598d4bb24c28f6a}{Weapon}} (Texture2D \texorpdfstring{$\ast$}{*}shared\+Texture, Vector2 position, Vector2 sheet\+Size=\{10, 3\}, float \doxymbox{\hyperlink{class_weapon_a425a9f9fc4bb9bf0e4de80855d3e2ac0}{scale}}=1.\+0f)
+\begin{DoxyCompactList}\small\item\em Constructs a weapon from sprite sheet grid coordinates. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_weapon_a7d25b8c37b3853290d84020b4030deb4}{Weapon}} (Texture2D \texorpdfstring{$\ast$}{*}shared\+Texture, int frame\+Index, Vector2 sheet\+Size=\{10, 3\}, float \doxymbox{\hyperlink{class_weapon_a425a9f9fc4bb9bf0e4de80855d3e2ac0}{scale}}=1.\+0f)
+\begin{DoxyCompactList}\small\item\em Constructs a weapon from a flat frame index in the sprite sheet. \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{class_weapon_a336aad13bf2efa6fb03f4ae60c78ade4}{\texorpdfstring{$\sim$}{\string~}\+Weapon}} ()=default
+\item 
+void \doxymbox{\hyperlink{class_weapon_a824a0959b6ca28242187ee84d3102e13}{Draw}} (Vector2 warrior\+Pos, int \doxymbox{\hyperlink{class_weapon_a0ccbeeeb781abf021ebb24463e06d5e5}{facing}}, bool show\+Bounds=false)
+\begin{DoxyCompactList}\small\item\em Draws the weapon sprite relative to a character position. \end{DoxyCompactList}\item 
+const void \doxymbox{\hyperlink{class_weapon_a6850081e5e3151d580d096203f145292}{set\+Offsets}} (Vector2 right\+Offset, Vector2 left\+Offset)
+\begin{DoxyCompactList}\small\item\em Sets the attachment offset for each facing direction. \end{DoxyCompactList}\item 
+Rectangle \doxymbox{\hyperlink{class_weapon_aa36f9e74a317600fa067ded0e1c1c1a0}{compute\+Collision\+Rec}} (Vector2 warrior\+Pos, int \doxymbox{\hyperlink{class_weapon_a0ccbeeeb781abf021ebb24463e06d5e5}{facing}}) const
+\begin{DoxyCompactList}\small\item\em Computes collision rectangle without modifying internal state. \end{DoxyCompactList}\item 
+const Rectangle \& \doxymbox{\hyperlink{class_weapon_aa7c03daded9914eea3e719f0e1ca6d9e}{get\+Collision\+Rect}} () const
+\begin{DoxyCompactList}\small\item\em Gets the cached collision rectangle from last \doxylink{class_weapon_a824a0959b6ca28242187ee84d3102e13}{Draw()} call. \end{DoxyCompactList}\item 
+const void \doxymbox{\hyperlink{class_weapon_a189a275cde7992c0ffd75cc3f1b966a7}{set\+Rotation}} (float new\+Rotation)
+\begin{DoxyCompactList}\small\item\em Sets the weapon\textquotesingle{}s rotation angle. \end{DoxyCompactList}\item 
+const void \doxymbox{\hyperlink{class_weapon_ada9b5d30021042bc6a7816268d604888}{set\+Scale}} (float new\+Scale)
+\begin{DoxyCompactList}\small\item\em Sets the weapon\textquotesingle{}s render scale. \end{DoxyCompactList}\item 
+const void \doxymbox{\hyperlink{class_weapon_aba8fc1b434b9e269f70abac64afedae0}{set\+Origin}} (Vector2 new\+Origin)
+\begin{DoxyCompactList}\small\item\em Sets the weapon\textquotesingle{}s origin point for rotation. \end{DoxyCompactList}\item 
+const void \doxymbox{\hyperlink{class_weapon_ac43bf34d0fe18d09e4f08b11433ee9b1}{set\+Facing}} (int f)
+\begin{DoxyCompactList}\small\item\em Sets the weapon\textquotesingle{}s facing direction. \end{DoxyCompactList}\item 
+const void \doxymbox{\hyperlink{class_weapon_a517c84a4dc73e458ccec24180aa43481}{set\+Attack\+Type}} (\doxymbox{\hyperlink{weapon_8h_a904b2f9c8f3951116c343784c59d6afe}{Attack\+Type}} type)
+\begin{DoxyCompactList}\small\item\em Sets the weapon\textquotesingle{}s attack behavior pattern. \end{DoxyCompactList}\item 
+const void \doxymbox{\hyperlink{class_weapon_ad563af2de23f25ccf75e033ceec4402f}{set\+Thrust\+Offset}} (float offset)
+\begin{DoxyCompactList}\small\item\em Sets the thrust offset for thrust-\/type attacks. \end{DoxyCompactList}\item 
+const \doxymbox{\hyperlink{weapon_8h_a904b2f9c8f3951116c343784c59d6afe}{Attack\+Type}} \doxymbox{\hyperlink{class_weapon_a8dae7622412710a1184917aa85f1a431}{get\+Attack\+Type}} () const
+\begin{DoxyCompactList}\small\item\em Gets the weapon\textquotesingle{}s current attack type. \end{DoxyCompactList}\item 
+const void \doxymbox{\hyperlink{class_weapon_abe554f22f5f978f1e7da8d86474da8d9}{set\+Damage}} (float dmg)
+\begin{DoxyCompactList}\small\item\em Sets the weapon\textquotesingle{}s damage value. \end{DoxyCompactList}\item 
+const float \doxymbox{\hyperlink{class_weapon_a1e866862f66b57e2786b20198660f0c0}{get\+Damage}} () const
+\begin{DoxyCompactList}\small\item\em Gets the weapon\textquotesingle{}s damage value. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Private Attributes}
+\begin{DoxyCompactItemize}
+\item 
+Texture2D \texorpdfstring{$\ast$}{*} \doxymbox{\hyperlink{class_weapon_a345c620ae000eac508ddd8bcb182d4c0}{texture}} \{nullptr\}
+\begin{DoxyCompactList}\small\item\em Pointer to shared sprite sheet texture (not owned). \end{DoxyCompactList}\item 
+Rectangle \doxymbox{\hyperlink{class_weapon_a0f9ebc15968399a6a99f4a9be36cb145}{source\+Rect}} \{0, 0, 0, 0\}
+\begin{DoxyCompactList}\small\item\em Source rectangle in sprite sheet (pixels). \end{DoxyCompactList}\item 
+Vector2 \doxymbox{\hyperlink{class_weapon_a2e07304911cb0044a0056dfc8c623dd8}{sprite\+Sheet\+Grid\+Size}} \{\}
+\begin{DoxyCompactList}\small\item\em Grid dimensions of sprite sheet (columns, rows). \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_weapon_aea591386a659ecf7dd7e41ada97db990}{rotation}} \{0.\+0f\}
+\begin{DoxyCompactList}\small\item\em Current rotation angle in degrees. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_weapon_a7fd2caa4e56831590ca00cdd140cc39d}{frame\+Cell\+Width}} \{0.\+0f\}
+\begin{DoxyCompactList}\small\item\em Width of single sprite cell (pixels). \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_weapon_a2bc062abbea315fa908942a021d93c81}{frame\+Cell\+Height}} \{0.\+0f\}
+\begin{DoxyCompactList}\small\item\em Height of single sprite cell (pixels). \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_weapon_a425a9f9fc4bb9bf0e4de80855d3e2ac0}{scale}} \{1.\+0f\}
+\begin{DoxyCompactList}\small\item\em Render scale multiplier. \end{DoxyCompactList}\item 
+Vector2 \doxymbox{\hyperlink{class_weapon_acd9d5fa6d839c2d8f0bf605767590410}{origin}} \{0.f, 0.f\}
+\begin{DoxyCompactList}\small\item\em Rotation origin in sprite-\/local coordinates (pixels, unscaled). \end{DoxyCompactList}\item 
+Vector2 \doxymbox{\hyperlink{class_weapon_ad265cbe7eb4679d7c6793c4288d022af}{attachment\+Offset\+Right}} \{35.f, 55.f\}
+\begin{DoxyCompactList}\small\item\em Offset from character when facing right. \end{DoxyCompactList}\item 
+Vector2 \doxymbox{\hyperlink{class_weapon_afab856f29f09584736d0dbad29cb322b}{attachment\+Offset\+Left}} \{25.f, 55.f\}
+\begin{DoxyCompactList}\small\item\em Offset from character when facing left. \end{DoxyCompactList}\item 
+Rectangle \doxymbox{\hyperlink{class_weapon_a323142ddd8d54e2ad4aaea11fcf41c18}{collision\+Rect}} \{0.f, 0.f, 0.f, 0.f\}
+\begin{DoxyCompactList}\small\item\em Cached collision AABB from last \doxylink{class_weapon_a824a0959b6ca28242187ee84d3102e13}{Draw()} call. \end{DoxyCompactList}\item 
+int \doxymbox{\hyperlink{class_weapon_a0ccbeeeb781abf021ebb24463e06d5e5}{facing}} \{1\}
+\begin{DoxyCompactList}\small\item\em Current facing direction (1 = right, -\/1 = left). \end{DoxyCompactList}\item 
+\doxymbox{\hyperlink{weapon_8h_a904b2f9c8f3951116c343784c59d6afe}{Attack\+Type}} \doxymbox{\hyperlink{class_weapon_aad1a84d3fb49f4362add023cad45afda}{attack\+Type}} \{\doxymbox{\hyperlink{weapon_8h_a904b2f9c8f3951116c343784c59d6afea198b44a40aa77f2256886010c7526c0b}{Attack\+Type::\+\+Swing}}\}
+\begin{DoxyCompactList}\small\item\em Current attack behavior pattern. \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_weapon_a2e520030d87416fb653bb98acaf477ad}{thrust\+Offset}} \{0.f\}
+\begin{DoxyCompactList}\small\item\em Linear thrust distance for Thrust attacks (pixels). \end{DoxyCompactList}\item 
+float \doxymbox{\hyperlink{class_weapon_a5fd71198c35ebc63e9d5c4fc486d2510}{damage}} \{10.f\}
+\begin{DoxyCompactList}\small\item\em Damage dealt by this weapon. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Represents a weapon sprite with rendering, rotation, and collision detection. 
+
+The \doxylink{class_weapon}{Weapon} class handles sprite rendering from a shared texture atlas, supports multiple attack patterns, and provides collision detection with rotation support. Weapons do not own their texture and are designed for efficient reuse. 
+
+\label{doc-constructors}
+\Hypertarget{class_weapon_doc-constructors}
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{class_weapon_a10e72a6601574ec80598d4bb24c28f6a}\index{Weapon@{Weapon}!Weapon@{Weapon}}
+\index{Weapon@{Weapon}!Weapon@{Weapon}}
+\doxysubsubsection{\texorpdfstring{Weapon()}{Weapon()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily \label{class_weapon_a10e72a6601574ec80598d4bb24c28f6a} 
+Weapon::\+\+Weapon (\begin{DoxyParamCaption}\item[{Texture2D \texorpdfstring{$\ast$}{*}}]{shared\+Texture}{, }\item[{Vector2}]{position}{, }\item[{Vector2}]{sheet\+Size}{ = {\ttfamily \{10,~3\}}, }\item[{float}]{scale}{ = {\ttfamily 1.0f}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a weapon from sprite sheet grid coordinates. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em shared\+Texture} & Pointer to the sprite sheet texture (not owned by weapon) \\
+\hline
+{\em position} & Grid position (column, row) in the sprite sheet \\
+\hline
+{\em sheet\+Size} & Grid dimensions of sprite sheet in cells (columns, rows) \\
+\hline
+{\em \doxylink{class_weapon_a425a9f9fc4bb9bf0e4de80855d3e2ac0}{scale}} & Render scale multiplier (1.\+0f = original size) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_weapon_a7d25b8c37b3853290d84020b4030deb4}\index{Weapon@{Weapon}!Weapon@{Weapon}}
+\index{Weapon@{Weapon}!Weapon@{Weapon}}
+\doxysubsubsection{\texorpdfstring{Weapon()}{Weapon()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily \label{class_weapon_a7d25b8c37b3853290d84020b4030deb4} 
+Weapon::\+\+Weapon (\begin{DoxyParamCaption}\item[{Texture2D \texorpdfstring{$\ast$}{*}}]{shared\+Texture}{, }\item[{int}]{frame\+Index}{, }\item[{Vector2}]{sheet\+Size}{ = {\ttfamily \{10,~3\}}, }\item[{float}]{scale}{ = {\ttfamily 1.0f}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Constructs a weapon from a flat frame index in the sprite sheet. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em shared\+Texture} & Pointer to the sprite sheet texture (not owned by weapon) \\
+\hline
+{\em frame\+Index} & Zero-\/based frame index in row-\/major order \\
+\hline
+{\em sheet\+Size} & Grid dimensions of sprite sheet in cells (columns, rows) \\
+\hline
+{\em \doxylink{class_weapon_a425a9f9fc4bb9bf0e4de80855d3e2ac0}{scale}} & Render scale multiplier (1.\+0f = original size) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_weapon_a336aad13bf2efa6fb03f4ae60c78ade4}\index{Weapon@{Weapon}!````~Weapon@{\texorpdfstring{$\sim$}{\string~}Weapon}}
+\index{````~Weapon@{\texorpdfstring{$\sim$}{\string~}Weapon}!Weapon@{Weapon}}
+\doxysubsubsection{\texorpdfstring{\texorpdfstring{$\sim$}{\string~}Weapon()}{\string~Weapon()}}
+{\footnotesize\ttfamily \label{class_weapon_a336aad13bf2efa6fb03f4ae60c78ade4} 
+Weapon::\+\texorpdfstring{$\sim$}{\string~}\+Weapon (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [default]}}
+
+
+
+\label{doc-func-members}
+\Hypertarget{class_weapon_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_weapon_aa36f9e74a317600fa067ded0e1c1c1a0}\index{Weapon@{Weapon}!computeCollisionRec@{computeCollisionRec}}
+\index{computeCollisionRec@{computeCollisionRec}!Weapon@{Weapon}}
+\doxysubsubsection{\texorpdfstring{computeCollisionRec()}{computeCollisionRec()}}
+{\footnotesize\ttfamily \label{class_weapon_aa36f9e74a317600fa067ded0e1c1c1a0} 
+Rectangle Weapon::\+compute\+Collision\+Rec (\begin{DoxyParamCaption}\item[{Vector2}]{warrior\+Pos}{, }\item[{int}]{facing}{}\end{DoxyParamCaption}) const}
+
+
+
+Computes collision rectangle without modifying internal state. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em warrior\+Pos} & Character\textquotesingle{}s world position \\
+\hline
+{\em \doxylink{class_weapon_a0ccbeeeb781abf021ebb24463e06d5e5}{facing}} & Direction character is facing (-\/1 = left, 1 = right) \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Axis-\/aligned bounding box (AABB) for the rotated weapon sprite 
+\end{DoxyReturn}
+\Hypertarget{class_weapon_a824a0959b6ca28242187ee84d3102e13}\index{Weapon@{Weapon}!Draw@{Draw}}
+\index{Draw@{Draw}!Weapon@{Weapon}}
+\doxysubsubsection{\texorpdfstring{Draw()}{Draw()}}
+{\footnotesize\ttfamily \label{class_weapon_a824a0959b6ca28242187ee84d3102e13} 
+void Weapon::\+\+Draw (\begin{DoxyParamCaption}\item[{Vector2}]{warrior\+Pos}{, }\item[{int}]{facing}{, }\item[{bool}]{show\+Bounds}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+Draws the weapon sprite relative to a character position. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em warrior\+Pos} & Character\textquotesingle{}s world position (attachment point) \\
+\hline
+{\em \doxylink{class_weapon_a0ccbeeeb781abf021ebb24463e06d5e5}{facing}} & Direction character is facing (-\/1 = left, 1 = right) \\
+\hline
+{\em show\+Bounds} & If true, draws debug visualization (collision box, pivot, origin) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_weapon_a8dae7622412710a1184917aa85f1a431}\index{Weapon@{Weapon}!getAttackType@{getAttackType}}
+\index{getAttackType@{getAttackType}!Weapon@{Weapon}}
+\doxysubsubsection{\texorpdfstring{getAttackType()}{getAttackType()}}
+{\footnotesize\ttfamily \label{class_weapon_a8dae7622412710a1184917aa85f1a431} 
+const \doxymbox{\hyperlink{weapon_8h_a904b2f9c8f3951116c343784c59d6afe}{Attack\+Type}} Weapon::\+get\+Attack\+Type (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the weapon\textquotesingle{}s current attack type. 
+
+\begin{DoxyReturn}{Returns}
+Current attack behavior pattern 
+\end{DoxyReturn}
+\Hypertarget{class_weapon_aa7c03daded9914eea3e719f0e1ca6d9e}\index{Weapon@{Weapon}!getCollisionRect@{getCollisionRect}}
+\index{getCollisionRect@{getCollisionRect}!Weapon@{Weapon}}
+\doxysubsubsection{\texorpdfstring{getCollisionRect()}{getCollisionRect()}}
+{\footnotesize\ttfamily \label{class_weapon_aa7c03daded9914eea3e719f0e1ca6d9e} 
+const Rectangle \& Weapon::\+get\+Collision\+Rect (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the cached collision rectangle from last \doxylink{class_weapon_a824a0959b6ca28242187ee84d3102e13}{Draw()} call. 
+
+\begin{DoxyReturn}{Returns}
+Reference to the collision rectangle 
+\end{DoxyReturn}
+\Hypertarget{class_weapon_a1e866862f66b57e2786b20198660f0c0}\index{Weapon@{Weapon}!getDamage@{getDamage}}
+\index{getDamage@{getDamage}!Weapon@{Weapon}}
+\doxysubsubsection{\texorpdfstring{getDamage()}{getDamage()}}
+{\footnotesize\ttfamily \label{class_weapon_a1e866862f66b57e2786b20198660f0c0} 
+const float Weapon::\+get\+Damage (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Gets the weapon\textquotesingle{}s damage value. 
+
+\begin{DoxyReturn}{Returns}
+Current damage amount 
+\end{DoxyReturn}
+\Hypertarget{class_weapon_a517c84a4dc73e458ccec24180aa43481}\index{Weapon@{Weapon}!setAttackType@{setAttackType}}
+\index{setAttackType@{setAttackType}!Weapon@{Weapon}}
+\doxysubsubsection{\texorpdfstring{setAttackType()}{setAttackType()}}
+{\footnotesize\ttfamily \label{class_weapon_a517c84a4dc73e458ccec24180aa43481} 
+const void Weapon::\+set\+Attack\+Type (\begin{DoxyParamCaption}\item[{\doxymbox{\hyperlink{weapon_8h_a904b2f9c8f3951116c343784c59d6afe}{Attack\+Type}}}]{type}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the weapon\textquotesingle{}s attack behavior pattern. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em type} & Attack type (Swing or Thrust) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_weapon_abe554f22f5f978f1e7da8d86474da8d9}\index{Weapon@{Weapon}!setDamage@{setDamage}}
+\index{setDamage@{setDamage}!Weapon@{Weapon}}
+\doxysubsubsection{\texorpdfstring{setDamage()}{setDamage()}}
+{\footnotesize\ttfamily \label{class_weapon_abe554f22f5f978f1e7da8d86474da8d9} 
+const void Weapon::\+set\+Damage (\begin{DoxyParamCaption}\item[{float}]{dmg}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the weapon\textquotesingle{}s damage value. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em dmg} & Damage amount \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_weapon_ac43bf34d0fe18d09e4f08b11433ee9b1}\index{Weapon@{Weapon}!setFacing@{setFacing}}
+\index{setFacing@{setFacing}!Weapon@{Weapon}}
+\doxysubsubsection{\texorpdfstring{setFacing()}{setFacing()}}
+{\footnotesize\ttfamily \label{class_weapon_ac43bf34d0fe18d09e4f08b11433ee9b1} 
+const void Weapon::\+set\+Facing (\begin{DoxyParamCaption}\item[{int}]{f}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the weapon\textquotesingle{}s facing direction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em f} & Facing direction (\texorpdfstring{$>$}{>}= 0 for right, \texorpdfstring{$<$}{<} 0 for left) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_weapon_a6850081e5e3151d580d096203f145292}\index{Weapon@{Weapon}!setOffsets@{setOffsets}}
+\index{setOffsets@{setOffsets}!Weapon@{Weapon}}
+\doxysubsubsection{\texorpdfstring{setOffsets()}{setOffsets()}}
+{\footnotesize\ttfamily \label{class_weapon_a6850081e5e3151d580d096203f145292} 
+const void Weapon::\+set\+Offsets (\begin{DoxyParamCaption}\item[{Vector2}]{right\+Offset}{, }\item[{Vector2}]{left\+Offset}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the attachment offset for each facing direction. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em right\+Offset} & Offset from character position when facing right \\
+\hline
+{\em left\+Offset} & Offset from character position when facing left \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_weapon_aba8fc1b434b9e269f70abac64afedae0}\index{Weapon@{Weapon}!setOrigin@{setOrigin}}
+\index{setOrigin@{setOrigin}!Weapon@{Weapon}}
+\doxysubsubsection{\texorpdfstring{setOrigin()}{setOrigin()}}
+{\footnotesize\ttfamily \label{class_weapon_aba8fc1b434b9e269f70abac64afedae0} 
+const void Weapon::\+set\+Origin (\begin{DoxyParamCaption}\item[{Vector2}]{new\+Origin}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the weapon\textquotesingle{}s origin point for rotation. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Origin} & Origin in sprite-\/local coordinates (pixels, unscaled) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_weapon_a189a275cde7992c0ffd75cc3f1b966a7}\index{Weapon@{Weapon}!setRotation@{setRotation}}
+\index{setRotation@{setRotation}!Weapon@{Weapon}}
+\doxysubsubsection{\texorpdfstring{setRotation()}{setRotation()}}
+{\footnotesize\ttfamily \label{class_weapon_a189a275cde7992c0ffd75cc3f1b966a7} 
+const void Weapon::\+set\+Rotation (\begin{DoxyParamCaption}\item[{float}]{new\+Rotation}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the weapon\textquotesingle{}s rotation angle. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Rotation} & Rotation in degrees (clockwise) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_weapon_ada9b5d30021042bc6a7816268d604888}\index{Weapon@{Weapon}!setScale@{setScale}}
+\index{setScale@{setScale}!Weapon@{Weapon}}
+\doxysubsubsection{\texorpdfstring{setScale()}{setScale()}}
+{\footnotesize\ttfamily \label{class_weapon_ada9b5d30021042bc6a7816268d604888} 
+const void Weapon::\+set\+Scale (\begin{DoxyParamCaption}\item[{float}]{new\+Scale}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the weapon\textquotesingle{}s render scale. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em new\+Scale} & Scale multiplier (1.\+0f = original size) \\
+\hline
+\end{DoxyParams}
+\Hypertarget{class_weapon_ad563af2de23f25ccf75e033ceec4402f}\index{Weapon@{Weapon}!setThrustOffset@{setThrustOffset}}
+\index{setThrustOffset@{setThrustOffset}!Weapon@{Weapon}}
+\doxysubsubsection{\texorpdfstring{setThrustOffset()}{setThrustOffset()}}
+{\footnotesize\ttfamily \label{class_weapon_ad563af2de23f25ccf75e033ceec4402f} 
+const void Weapon::\+set\+Thrust\+Offset (\begin{DoxyParamCaption}\item[{float}]{offset}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Sets the thrust offset for thrust-\/type attacks. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em offset} & Distance in pixels to thrust forward \\
+\hline
+\end{DoxyParams}
+
+
+\label{doc-variable-members}
+\Hypertarget{class_weapon_doc-variable-members}
+\doxysubsection{Member Data Documentation}
+\Hypertarget{class_weapon_afab856f29f09584736d0dbad29cb322b}\index{Weapon@{Weapon}!attachmentOffsetLeft@{attachmentOffsetLeft}}
+\index{attachmentOffsetLeft@{attachmentOffsetLeft}!Weapon@{Weapon}}
+\doxysubsubsection{\texorpdfstring{attachmentOffsetLeft}{attachmentOffsetLeft}}
+{\footnotesize\ttfamily \label{class_weapon_afab856f29f09584736d0dbad29cb322b} 
+Vector2 Weapon::\+attachment\+Offset\+Left \{25.f, 55.f\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Offset from character when facing left. 
+
+\Hypertarget{class_weapon_ad265cbe7eb4679d7c6793c4288d022af}\index{Weapon@{Weapon}!attachmentOffsetRight@{attachmentOffsetRight}}
+\index{attachmentOffsetRight@{attachmentOffsetRight}!Weapon@{Weapon}}
+\doxysubsubsection{\texorpdfstring{attachmentOffsetRight}{attachmentOffsetRight}}
+{\footnotesize\ttfamily \label{class_weapon_ad265cbe7eb4679d7c6793c4288d022af} 
+Vector2 Weapon::\+attachment\+Offset\+Right \{35.f, 55.f\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Offset from character when facing right. 
+
+\Hypertarget{class_weapon_aad1a84d3fb49f4362add023cad45afda}\index{Weapon@{Weapon}!attackType@{attackType}}
+\index{attackType@{attackType}!Weapon@{Weapon}}
+\doxysubsubsection{\texorpdfstring{attackType}{attackType}}
+{\footnotesize\ttfamily \label{class_weapon_aad1a84d3fb49f4362add023cad45afda} 
+\doxymbox{\hyperlink{weapon_8h_a904b2f9c8f3951116c343784c59d6afe}{Attack\+Type}} Weapon::\+attack\+Type \{\doxymbox{\hyperlink{weapon_8h_a904b2f9c8f3951116c343784c59d6afea198b44a40aa77f2256886010c7526c0b}{Attack\+Type::\+\+Swing}}\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Current attack behavior pattern. 
+
+\Hypertarget{class_weapon_a323142ddd8d54e2ad4aaea11fcf41c18}\index{Weapon@{Weapon}!collisionRect@{collisionRect}}
+\index{collisionRect@{collisionRect}!Weapon@{Weapon}}
+\doxysubsubsection{\texorpdfstring{collisionRect}{collisionRect}}
+{\footnotesize\ttfamily \label{class_weapon_a323142ddd8d54e2ad4aaea11fcf41c18} 
+Rectangle Weapon::\+collision\+Rect \{0.f, 0.f, 0.f, 0.f\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Cached collision AABB from last \doxylink{class_weapon_a824a0959b6ca28242187ee84d3102e13}{Draw()} call. 
+
+\Hypertarget{class_weapon_a5fd71198c35ebc63e9d5c4fc486d2510}\index{Weapon@{Weapon}!damage@{damage}}
+\index{damage@{damage}!Weapon@{Weapon}}
+\doxysubsubsection{\texorpdfstring{damage}{damage}}
+{\footnotesize\ttfamily \label{class_weapon_a5fd71198c35ebc63e9d5c4fc486d2510} 
+float Weapon::\+damage \{10.f\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Damage dealt by this weapon. 
+
+\Hypertarget{class_weapon_a0ccbeeeb781abf021ebb24463e06d5e5}\index{Weapon@{Weapon}!facing@{facing}}
+\index{facing@{facing}!Weapon@{Weapon}}
+\doxysubsubsection{\texorpdfstring{facing}{facing}}
+{\footnotesize\ttfamily \label{class_weapon_a0ccbeeeb781abf021ebb24463e06d5e5} 
+int Weapon::\+facing \{1\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Current facing direction (1 = right, -\/1 = left). 
+
+\Hypertarget{class_weapon_a2bc062abbea315fa908942a021d93c81}\index{Weapon@{Weapon}!frameCellHeight@{frameCellHeight}}
+\index{frameCellHeight@{frameCellHeight}!Weapon@{Weapon}}
+\doxysubsubsection{\texorpdfstring{frameCellHeight}{frameCellHeight}}
+{\footnotesize\ttfamily \label{class_weapon_a2bc062abbea315fa908942a021d93c81} 
+float Weapon::\+frame\+Cell\+Height \{0.\+0f\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Height of single sprite cell (pixels). 
+
+\Hypertarget{class_weapon_a7fd2caa4e56831590ca00cdd140cc39d}\index{Weapon@{Weapon}!frameCellWidth@{frameCellWidth}}
+\index{frameCellWidth@{frameCellWidth}!Weapon@{Weapon}}
+\doxysubsubsection{\texorpdfstring{frameCellWidth}{frameCellWidth}}
+{\footnotesize\ttfamily \label{class_weapon_a7fd2caa4e56831590ca00cdd140cc39d} 
+float Weapon::\+frame\+Cell\+Width \{0.\+0f\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Width of single sprite cell (pixels). 
+
+\Hypertarget{class_weapon_acd9d5fa6d839c2d8f0bf605767590410}\index{Weapon@{Weapon}!origin@{origin}}
+\index{origin@{origin}!Weapon@{Weapon}}
+\doxysubsubsection{\texorpdfstring{origin}{origin}}
+{\footnotesize\ttfamily \label{class_weapon_acd9d5fa6d839c2d8f0bf605767590410} 
+Vector2 Weapon::\+origin \{0.f, 0.f\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Rotation origin in sprite-\/local coordinates (pixels, unscaled). 
+
+\Hypertarget{class_weapon_aea591386a659ecf7dd7e41ada97db990}\index{Weapon@{Weapon}!rotation@{rotation}}
+\index{rotation@{rotation}!Weapon@{Weapon}}
+\doxysubsubsection{\texorpdfstring{rotation}{rotation}}
+{\footnotesize\ttfamily \label{class_weapon_aea591386a659ecf7dd7e41ada97db990} 
+float Weapon::\+rotation \{0.\+0f\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Current rotation angle in degrees. 
+
+\Hypertarget{class_weapon_a425a9f9fc4bb9bf0e4de80855d3e2ac0}\index{Weapon@{Weapon}!scale@{scale}}
+\index{scale@{scale}!Weapon@{Weapon}}
+\doxysubsubsection{\texorpdfstring{scale}{scale}}
+{\footnotesize\ttfamily \label{class_weapon_a425a9f9fc4bb9bf0e4de80855d3e2ac0} 
+float Weapon::\+scale \{1.\+0f\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Render scale multiplier. 
+
+\Hypertarget{class_weapon_a0f9ebc15968399a6a99f4a9be36cb145}\index{Weapon@{Weapon}!sourceRect@{sourceRect}}
+\index{sourceRect@{sourceRect}!Weapon@{Weapon}}
+\doxysubsubsection{\texorpdfstring{sourceRect}{sourceRect}}
+{\footnotesize\ttfamily \label{class_weapon_a0f9ebc15968399a6a99f4a9be36cb145} 
+Rectangle Weapon::\+source\+Rect \{0, 0, 0, 0\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Source rectangle in sprite sheet (pixels). 
+
+\Hypertarget{class_weapon_a2e07304911cb0044a0056dfc8c623dd8}\index{Weapon@{Weapon}!spriteSheetGridSize@{spriteSheetGridSize}}
+\index{spriteSheetGridSize@{spriteSheetGridSize}!Weapon@{Weapon}}
+\doxysubsubsection{\texorpdfstring{spriteSheetGridSize}{spriteSheetGridSize}}
+{\footnotesize\ttfamily \label{class_weapon_a2e07304911cb0044a0056dfc8c623dd8} 
+Vector2 Weapon::\+sprite\+Sheet\+Grid\+Size \{\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Grid dimensions of sprite sheet (columns, rows). 
+
+\Hypertarget{class_weapon_a345c620ae000eac508ddd8bcb182d4c0}\index{Weapon@{Weapon}!texture@{texture}}
+\index{texture@{texture}!Weapon@{Weapon}}
+\doxysubsubsection{\texorpdfstring{texture}{texture}}
+{\footnotesize\ttfamily \label{class_weapon_a345c620ae000eac508ddd8bcb182d4c0} 
+Texture2D\texorpdfstring{$\ast$}{*} Weapon::\+texture \{nullptr\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Pointer to shared sprite sheet texture (not owned). 
+
+\Hypertarget{class_weapon_a2e520030d87416fb653bb98acaf477ad}\index{Weapon@{Weapon}!thrustOffset@{thrustOffset}}
+\index{thrustOffset@{thrustOffset}!Weapon@{Weapon}}
+\doxysubsubsection{\texorpdfstring{thrustOffset}{thrustOffset}}
+{\footnotesize\ttfamily \label{class_weapon_a2e520030d87416fb653bb98acaf477ad} 
+float Weapon::\+thrust\+Offset \{0.f\}\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Linear thrust distance for Thrust attacks (pixels). 
+
+
+
+The documentation for this class was generated from the following files:\+\begin{DoxyCompactItemize}
+\item 
+\doxymbox{\hyperlink{weapon_8h}{weapon.\+h}}\item 
+\doxymbox{\hyperlink{weapon_8cpp}{weapon.\+cpp}}\end{DoxyCompactItemize}
